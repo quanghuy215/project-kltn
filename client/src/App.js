@@ -6,6 +6,7 @@ import MainPages from './components/mainpages/Pages';
 import Footer from './components/footer/Footer';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ChatBot from './components/chatbot/ChatBot';
 toast.configure({
   position: toast.POSITION.BOTTOM_RIGHT,
 });
@@ -16,6 +17,7 @@ function App() {
         <div className='App'>
           <Header />
           <MainPages />
+          <ChatBot />
           <Footer />
           {/* <ToastContainer
             position='bottom-left'
