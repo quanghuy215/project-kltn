@@ -75,10 +75,64 @@
 #btn_buy {
   background: #555;
   margin-right: 5px;
+  text-align: center;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+#btn_buy {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#btn_buy:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 5px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#btn_buy:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+#btn_buy:hover:after {
+  opacity: 1;
+  right: 10px;
 }
 #btn_view {
   background: teal;
   margin-left: 5px;
+  text-align: center;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.7);
+}
+#btn_view {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#btn_view:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 5px;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#btn_view:hover {
+  padding-right: 24px;
+  padding-left: 8px;
+}
+
+#btn_view:hover:after {
+  opacity: 1;
+  right: 10px;
 }
 .product_card input {
   position: absolute;
