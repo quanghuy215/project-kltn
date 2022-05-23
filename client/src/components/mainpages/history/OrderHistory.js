@@ -1,63 +1,68 @@
-import React, {useContext, useEffect} from 'react'
-import {GlobalState} from '../../../GlobalState'
-import {Link} from 'react-router-dom'
-import axios from 'axios'
-
+import React, { useContext, useEffect } from 'react';
+import { GlobalState } from '../../../GlobalState';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import Chart from '../../chart/Chart';
 function OrderHistory() {
-    const state = useContext(GlobalState)
-    const [history, setHistory] = state.userAPI.history
-    const [isAdmin] = state.userAPI.isAdmin
-    const [token] = state.token
-    
+  const state = useContext(GlobalState);
+  const [productName, setProductName] = state.productsAPI.productName;
+  const [history, setHistory] = state.userAPI.history;
+  const [isAdmin] = state.userAPI.isAdmin;
+  const [token] = state.token;
 
-    useEffect(() => {
-        if(token){
-            const getHistory = async() =>{
-                if(isAdmin){
-                    const res = await axios.get('/api/payment', {
-                        headers: {Authorization: token}
-                    })
-                    setHistory(res.data)
-                }else{
-                    const res = await axios.get('/user/history', {
-                        headers: {Authorization: token}
-                    })
-                    setHistory(res.data)
-                }
-            }
-            getHistory()
+  useEffect(() => {
+    if (token) {
+      const getHistory = async () => {
+        if (isAdmin) {
+          const res = await axios.get('/api/payment', {
+            headers: { Authorization: token },
+          });
+          setHistory(res.data);
+        } else {
+          const res = await axios.get('/user/history', {
+            headers: { Authorization: token },
+          });
+          setHistory(res.data);
         }
-    },[token, isAdmin, setHistory])
+      };
+      getHistory();
+    }
+  }, [token, isAdmin, setHistory]);
 
-    return (
-        <div className="history-page">
-            <h2>History</h2>
+  return (
+    <div className='history-page'>
+      <h2>History</h2>
 
-            <h4>You have {history.length} ordered</h4>
-
-            <table>
-                <thead>
-                    <tr>
-                        {/* <th>Payment ID</th> */}
-                        <th>Date of Purchased</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        history.map(items => (
-                            <tr key={items._id}>
-                                {/* <td>{items.paymentID}</td> */}
-                                {/* <td></td> */}
-                                <td>{new Date(items.createdAt).toLocaleDateString()}</td>
-                                <td><Link to={`/history/${items._id}`}>View</Link></td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
-    )
+      <h4>You have {history.length} ordered</h4>
+      <Chart />
+      <br />
+      <hr />
+      <br />
+      <table>
+        <thead>
+          <tr>
+            {/* <th>Payment ID</th> */}
+            <th>Date of Purchased</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {history.map((items) => (
+            <tr key={items._id}>
+              {/* <td>{items.paymentID}</td> */}
+              {/* <td></td> */}
+              <td>{new Date(items.createdAt).toLocaleDateString()}</td>
+              <td>
+                <Link to={`/history/${items._id}`}>View</Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <br />
+      <hr />
+    </div>
+  );
 }
 
-export default OrderHistory
+export default OrderHistory;
