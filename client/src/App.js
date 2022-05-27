@@ -8,7 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ChatBot from './components/chatbot/ChatBot';
 toast.configure({
-  position: toast.POSITION.BOTTOM_RIGHT,
+  position: toast.POSITION.BOTTOM_LEFT,
 });
 function App() {
   return (

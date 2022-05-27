@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Bar, HorizontalBar } from 'react-chartjs-2';
 import { GlobalState } from '../../GlobalState';
+import { Chart as ChartJS } from 'chart.js/auto';
 const Chart = () => {
   const state = useContext(GlobalState);
   const [productName, setProductName] = state.productsAPI.productName;

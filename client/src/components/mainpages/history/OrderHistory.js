@@ -34,7 +34,8 @@ function OrderHistory() {
       <h2>History</h2>
 
       <h4>You have {history.length} ordered</h4>
-      <Chart />
+      {isAdmin && <Chart />}
+
       <br />
       <hr />
       <br />
